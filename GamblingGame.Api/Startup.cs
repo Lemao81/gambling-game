@@ -1,4 +1,5 @@
 using GamblingGame.Domain.Interfaces;
+using GamblingGame.Domain.Services;
 using GamblingGame.Repo;
 using GamblingGame.Repo.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -16,6 +17,9 @@ namespace GamblingGame.Api
             services.AddDbContext<UserDbContext>(options => options.UseSqlServer(""));
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IJwtTokenService, JwtTokenService>();
+            services.AddScoped<IPasswordValidator, PasswordValidator>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

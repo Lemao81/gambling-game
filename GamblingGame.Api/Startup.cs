@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Converters;
 
 namespace GamblingGame.Api
 {
@@ -24,6 +25,12 @@ namespace GamblingGame.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<GamblingGameDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Local")));
+
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.Converters.Add(new StringEnumConverter());
+                });
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();

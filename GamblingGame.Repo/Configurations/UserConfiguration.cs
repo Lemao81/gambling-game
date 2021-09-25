@@ -9,9 +9,13 @@ namespace GamblingGame.Repo.Configurations
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.ToTable("Users");
+            
             builder.HasKey(u => u.Id);
+            
             builder.Property(u => u.UserName).HasMaxLength(50).IsRequired();
             builder.Property(u => u.PasswordHash).HasMaxLength(256).IsRequired();
+            
+            builder.HasOne(u => u.Account).WithOne(a => a.User).HasForeignKey<User>(u => u.AccountId).HasForeignKey<Account>(a => a.UserId);
         }
     }
 }

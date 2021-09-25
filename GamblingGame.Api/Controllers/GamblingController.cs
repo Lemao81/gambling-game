@@ -1,11 +1,13 @@
 ﻿using System.Threading.Tasks;
 using GamblingGame.Api.Models.Dtos;
 using GamblingGame.Domain.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamblingGame.Api.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/Gambling")]
     [ApiController]
     public class GamblingController : ControllerBase
@@ -17,7 +19,6 @@ namespace GamblingGame.Api.Controllers
             _gamblingService = gamblingService;
         }
 
-        [Authorize]
         [HttpPost("Gamble")]
         public async Task<ActionResult<GambleResponse>> Gamble(GambleRequest request)
         {

@@ -1,14 +1,18 @@
+using System.Text;
+using GamblingGame.Domain.Consts;
 using GamblingGame.Domain.Interfaces;
 using GamblingGame.Domain.Models;
 using GamblingGame.Domain.Services;
 using GamblingGame.Repo;
 using GamblingGame.Repo.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Converters;
 
 namespace GamblingGame.Api
@@ -39,6 +43,16 @@ namespace GamblingGame.Api
             services.AddScoped<IGamblingService, GamblingService>();
             services.AddScoped<IPasswordValidator, PasswordValidator>();
             services.AddScoped<IAuthenticateContext, AuthenticateContext>();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = true,
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Const.JwtSecret))
+                });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -48,8 +62,9 @@ namespace GamblingGame.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAuthentication();
             app.UseRouting();
-
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

@@ -1,11 +1,13 @@
 ﻿using System.Threading.Tasks;
 using GamblingGame.Api.Models.Dtos;
 using GamblingGame.Domain.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamblingGame.Api.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Route("api/User")]
     public class UserController : ControllerBase

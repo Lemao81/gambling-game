@@ -12,7 +12,7 @@ namespace GamblingGame.Domain.Services
     {
         public string CreateToken(Guid userId)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Const.JwtSecret));
+            var securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Const.JwtSecret));
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Expires = DateTime.Now.AddHours(4),

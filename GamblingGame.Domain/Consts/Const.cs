@@ -4,6 +4,7 @@
     {
         public const string JwtSecret = "APidzYdfg443tR7Ylp45rgddasdf";
         public const string IdClaimType = "id";
+        public const string BearerPrefix = "Bearer ";
 
         public const int AccountStartPoints = 10000;
         public const int GambleWinFactor = 9;

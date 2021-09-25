@@ -26,6 +26,6 @@ namespace GamblingGame.Domain.Models
             return new(GambleStatus.Won, GetPointsString(winPoints), currentAccountPoints + winPoints);
         }
 
-        private static string GetPointsString(int amount) => $"{(amount >= 0 ? "+" : "-")}{amount}";
+        private static string GetPointsString(int amount) => $"{(amount >= 0 ? "+" : "")}{amount}";
     }
 }

@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace GamblingGame.Api
 {
@@ -35,7 +36,7 @@ namespace GamblingGame.Api
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
                 {
-                    options.SerializerSettings.Converters.Add(new StringEnumConverter());
+                    options.SerializerSettings.Converters.Add(new StringEnumConverter(typeof(CamelCaseNamingStrategy)));
                 });
 
             services.AddMvc(options => options.Filters.Add<DomainExceptionFilter>());
@@ -62,6 +63,7 @@ namespace GamblingGame.Api
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseMiddleware<ExceptionHandlerMiddleware>();
+            app.UseMiddleware<AuthenticateMiddleware>();
 
             if (env.IsDevelopment())
             {

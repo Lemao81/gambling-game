@@ -1,4 +1,5 @@
 using GamblingGame.Domain.Interfaces;
+using GamblingGame.Domain.Models;
 using GamblingGame.Domain.Services;
 using GamblingGame.Repo;
 using GamblingGame.Repo.Repositories;
@@ -28,7 +29,9 @@ namespace GamblingGame.Api
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IJwtTokenService, JwtTokenService>();
+            services.AddScoped<IGamblingService, GamblingService>();
             services.AddScoped<IPasswordValidator, PasswordValidator>();
+            services.AddScoped<IAuthenticateContext, AuthenticateContext>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

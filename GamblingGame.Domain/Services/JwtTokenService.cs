@@ -18,7 +18,7 @@ namespace GamblingGame.Domain.Services
                 Expires = DateTime.Now.AddHours(4),
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.NameIdentifier, userId.ToString())
+                    new Claim(Const.IdClaimType, userId.ToString())
                 }),
                 SigningCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256)
             };

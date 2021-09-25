@@ -5,6 +5,20 @@ namespace GamblingGame.Domain.Models
 {
     public class AuthenticateContext : IAuthenticateContext
     {
-        public Guid UserId { get; set; }
+        private Guid _userId;
+
+        public Guid UserId
+        {
+            get
+            {
+                if (_userId == default)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
+                return _userId;
+            }
+            set => _userId = value;
+        }
     }
 }

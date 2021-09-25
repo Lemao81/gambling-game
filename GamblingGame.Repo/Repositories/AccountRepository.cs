@@ -18,10 +18,8 @@ namespace GamblingGame.Repo.Repositories
 
         public async Task<Account> GetByIdAsync(Guid id) => await _dbContext.Accounts.FindAsync(id) ?? throw new AccountNotFoundException(id);
 
-        public async Task<Account> GetByUserIdAsync(Guid userId)
-        {
-            return await _dbContext.Accounts.SingleOrDefaultAsync(a => a.UserId == userId) ?? throw new AccountNotFoundException(userId);
-        }
+        public async Task<Account> GetByUserIdAsync(Guid userId) => await _dbContext.Accounts.SingleOrDefaultAsync(a => a.UserId == userId) ??
+                                                                    throw new AccountNotFoundException(userId, true);
 
         public async Task<Account> UpdateAsync(Account account)
         {

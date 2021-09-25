@@ -30,8 +30,7 @@ namespace GamblingGame.Domain.Services
 
         private async Task<Account> ValidateAccount(int betPoints)
         {
-            var account = await _accountRepository.GetByUserIdAsync(_authenticateContext.UserId) ??
-                          throw new AccountNotFoundException(_authenticateContext.UserId, true);
+            var account = await _accountRepository.GetByUserIdAsync(_authenticateContext.UserId);
             if (account.Points < betPoints)
             {
                 throw new OverdraftException();

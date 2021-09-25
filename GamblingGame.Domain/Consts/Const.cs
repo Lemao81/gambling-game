@@ -2,7 +2,7 @@
 {
     public static class Const
     {
-        public const string JwtSecret = "APidzY&R%Ylp";
+        public const string JwtSecret = "APidzYdfg443tR7Ylp45rgddasdf";
         public const string IdClaimType = "id";
 
         public const int AccountStartPoints = 10000;

@@ -5,6 +5,7 @@ using GamblingGame.Repo.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -12,9 +13,16 @@ namespace GamblingGame.Api
 {
     public class Startup
     {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; set; }
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<UserDbContext>(options => options.UseSqlServer(""));
+            services.AddDbContext<UserDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Local")));
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
@@ -35,7 +43,7 @@ namespace GamblingGame.Api
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=SlotMachine}/{action=GetWinLines}");
+                    pattern: "{controller=Gambling}/{action=Gamble}");
             });
         }
     }

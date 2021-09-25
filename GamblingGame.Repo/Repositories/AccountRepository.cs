@@ -25,6 +25,7 @@ namespace GamblingGame.Repo.Repositories
 
         public async Task<Account> UpdateAsync(Account account)
         {
+            account.LastModified = DateTime.Now;
             var entry = _dbContext.Accounts.Update(account);
             await _dbContext.SaveChangesAsync();
 

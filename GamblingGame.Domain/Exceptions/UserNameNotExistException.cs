@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace GamblingGame.Domain.Exceptions
+﻿namespace GamblingGame.Domain.Exceptions
 {
-    public class UserNameNotExistException : Exception
+    public class UserNameNotExistException : DomainException
     {
         public UserNameNotExistException()
         {
@@ -11,5 +9,7 @@ namespace GamblingGame.Domain.Exceptions
         public UserNameNotExistException(string userName) : base($"A user with name {userName} doesn't exist")
         {
         }
+
+        public override string Reason => "Given user name doesn't exist";
     }
 }

@@ -1,4 +1,5 @@
 using System.Text;
+using GamblingGame.Api.Filters;
 using GamblingGame.Domain.Consts;
 using GamblingGame.Domain.Interfaces;
 using GamblingGame.Domain.Models;
@@ -35,6 +36,8 @@ namespace GamblingGame.Api
                 {
                     options.SerializerSettings.Converters.Add(new StringEnumConverter());
                 });
+
+            services.AddMvc(options => options.Filters.Add<DomainExceptionFilter>());
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();

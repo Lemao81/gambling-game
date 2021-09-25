@@ -2,10 +2,12 @@
 
 namespace GamblingGame.Domain.Exceptions
 {
-    public class PasswordIncorrectException : Exception
+    public class PasswordIncorrectException : DomainException
     {
-        public PasswordIncorrectException() : base("Password is incorrect")
+        public PasswordIncorrectException() : base("Incorrect Password")
         {
         }
+
+        public override string Reason => "Password is incorrect";
     }
 }

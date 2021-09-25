@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace GamblingGame.Domain.Exceptions
 {
-    public class PasswordInvalidException : Exception
+    public class PasswordInvalidException : DomainException
     {
         public PasswordInvalidException()
         {
@@ -12,5 +11,7 @@ namespace GamblingGame.Domain.Exceptions
         public PasswordInvalidException(IEnumerable<string> errors) : base($"Password is invalid: {string.Join(". ", errors)}")
         {
         }
+
+        public override string Reason => "Given password is not valid";
     }
 }

@@ -1,15 +1,15 @@
-﻿using System;
-
-namespace GamblingGame.Domain.Exceptions
+﻿namespace GamblingGame.Domain.Exceptions
 {
-    public class UserNameExistException : Exception
+    public class UserNameExistException : DomainException
     {
         public UserNameExistException()
         {
         }
 
-        public UserNameExistException(string userName) : base($"A user with name {userName} exist already")
+        public UserNameExistException(string userName) : base($"User name {userName} exists already")
         {
         }
+
+        public override string Reason => "User name exists already";
     }
 }

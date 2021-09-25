@@ -2,7 +2,7 @@
 
 namespace GamblingGame.Domain.Exceptions
 {
-    public class AccountNotFoundException : Exception
+    public class AccountNotFoundException : DomainException
     {
         public AccountNotFoundException()
         {
@@ -11,5 +11,7 @@ namespace GamblingGame.Domain.Exceptions
         public AccountNotFoundException(Guid id, bool isUserId = false) : base($"Account with {(isUserId ? "userId" : "id")} {id} not found")
         {
         }
+
+        public override string Reason => "A user account doesn't exist";
     }
 }

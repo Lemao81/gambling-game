@@ -1,5 +1,6 @@
 using System.Text;
 using GamblingGame.Api.Filters;
+using GamblingGame.Api.Middlewares;
 using GamblingGame.Domain.Consts;
 using GamblingGame.Domain.Interfaces;
 using GamblingGame.Domain.Models;
@@ -60,6 +61,8 @@ namespace GamblingGame.Api
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

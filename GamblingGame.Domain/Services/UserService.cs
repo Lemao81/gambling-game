@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using GamblingGame.Domain.Consts;
 using GamblingGame.Domain.Exceptions;
 using GamblingGame.Domain.Helpers;
 using GamblingGame.Domain.Interfaces;
@@ -34,11 +35,17 @@ namespace GamblingGame.Domain.Services
                 throw new PasswordInvalidException(errors);
             }
 
-            await _userRepository.AddAsync(new User
+            var user = new User
             {
                 UserName = userName,
-                PasswordHash = HashHelper.CreateSha256Hash(password)
-            });
+                PasswordHash = HashHelper.CreateSha256Hash(password),
+                Account = new Account
+                {
+                    Points = Const.AccountStartPoints
+                }
+            };
+
+            await _userRepository.AddAsync(user);
         }
 
         public async Task<string> LoginAsync(string userName, string password)

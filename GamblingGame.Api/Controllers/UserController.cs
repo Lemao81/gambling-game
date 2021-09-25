@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using GamblingGame.Api.Models.Dtos;
 using GamblingGame.Domain.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GamblingGame.Api.Controllers
@@ -16,6 +17,7 @@ namespace GamblingGame.Api.Controllers
             _userService = userService;
         }
 
+        [AllowAnonymous]
         [HttpPost("Register")]
         public async Task<ActionResult> Register(RegisterRequest request)
         {
@@ -24,6 +26,7 @@ namespace GamblingGame.Api.Controllers
             return Ok();
         }
 
+        [AllowAnonymous]
         [HttpPost("Login")]
         public async Task<ActionResult<LoginResponse>> Login(LoginRequest request)
         {

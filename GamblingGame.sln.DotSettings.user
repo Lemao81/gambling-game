@@ -1,0 +1,11 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ee6d1ee8_002D0399_002D4a16_002Db0b3_002D6c2e05de2e53/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GambleAsync_WinTip_ProperResultReturned" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::E68BC9D3-C93E-440E-9688-085D968E6C1C::net5.0::Tests.GamblingServiceTests.GambleAsync_WinTip_ProperResultReturned&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::E68BC9D3-C93E-440E-9688-085D968E6C1C::net5.0::Tests.GamblingServiceTests.GambleAsync_LoseTip_ProperResultReturned&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::E68BC9D3-C93E-440E-9688-085D968E6C1C::net5.0::Tests.GamblingServiceTests.GambleAsync_OverdraftTip_ExceptionThrown&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::E68BC9D3-C93E-440E-9688-085D968E6C1C::net5.0::Tests.PasswordValidatorTests.Validate_ValidInput_NoErrorsReturned&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::E68BC9D3-C93E-440E-9688-085D968E6C1C::net5.0::Tests.PasswordValidatorTests.Validate_InvalidLength_ErrorReturned&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::E68BC9D3-C93E-440E-9688-085D968E6C1C::net5.0::Tests.PasswordValidatorTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

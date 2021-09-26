@@ -1,6 +1,10 @@
 using System.Text;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using GamblingGame.Api.Filters;
 using GamblingGame.Api.Middlewares;
+using GamblingGame.Api.Models.Dtos;
+using GamblingGame.Api.Validators;
 using GamblingGame.Domain.Consts;
 using GamblingGame.Domain.Interfaces;
 using GamblingGame.Domain.Models;
@@ -39,7 +43,7 @@ namespace GamblingGame.Api
                     options.SerializerSettings.Converters.Add(new StringEnumConverter(typeof(CamelCaseNamingStrategy)));
                 });
 
-            services.AddMvc(options => options.Filters.Add<DomainExceptionFilter>());
+            services.AddMvc(options => options.Filters.Add<DomainExceptionFilter>()).AddFluentValidation();
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
@@ -49,6 +53,7 @@ namespace GamblingGame.Api
             services.AddScoped<IPasswordValidator, PasswordValidator>();
             services.AddScoped<IAuthenticateContext, AuthenticateContext>();
             services.AddScoped<ILotteryWheel, LotteryWheel>();
+            services.AddScoped<IValidator<GambleRequest>, GambleRequestValidator>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters

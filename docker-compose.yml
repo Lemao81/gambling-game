@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server
+    volumes:
+      - mssql-data:/var/opt/mssql
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${DB_PASSWORD}
+      - MSSQL_PID=Express
+
+  gamblinggame.api:
+    depends_on:
+      - mssql
+    image: gamblinggameapi
+    build:
+      context: .
+      dockerfile: GamblingGame.Api/Dockerfile
+    environment:
+      CONNECTIONSTRINGS__DEFAULTCONNECTION: Server=mssql;Database=GamblingGame;User Id=sa;Password=${DB_PASSWORD};
+
+volumes:
+  mssql-data:

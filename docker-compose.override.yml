@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  mssql:
+    ports:
+      - "1433:1433"
+
+  gamblinggame.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8080:80"

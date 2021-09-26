@@ -1,9 +1,11 @@
 using System;
 using GamblingGame.Repo;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Polly;
 
 namespace GamblingGame.Api
 {
@@ -16,8 +18,13 @@ namespace GamblingGame.Api
             var dbContext = serviceScope.ServiceProvider.GetRequiredService<GamblingGameDbContext>();
             try
             {
-                dbContext.Database.Migrate();
-                Console.WriteLine("Migration succeeded");
+                Policy.Handle<SqlException>()
+                    .WaitAndRetry(6, attempt => TimeSpan.FromSeconds(Math.Pow(2, attempt)))
+                    .Execute(() =>
+                    {
+                        dbContext.Database.Migrate();
+                        Console.WriteLine("Migration succeeded");
+                    });
             }
             catch (Exception)
             {

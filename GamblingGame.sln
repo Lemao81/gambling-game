@@ -1,12 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamblingGame.Api", "GamblingGame.Api\GamblingGame.Api.csproj", "{CB2A8FFA-9273-44AE-8333-BF6D788A9EE2}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamblingGame.Api", "GamblingGame.Api\GamblingGame.Api.csproj", "{CB2A8FFA-9273-44AE-8333-BF6D788A9EE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamblingGame.Domain", "GamblingGame.Domain\GamblingGame.Domain.csproj", "{0D5A688D-467F-49CF-A03A-F70D44C32056}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamblingGame.Domain", "GamblingGame.Domain\GamblingGame.Domain.csproj", "{0D5A688D-467F-49CF-A03A-F70D44C32056}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GamblingGame.Repo", "GamblingGame.Repo\GamblingGame.Repo.csproj", "{DE9482A3-1496-46FD-9FCC-6E3873C322C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GamblingGame.Repo", "GamblingGame.Repo\GamblingGame.Repo.csproj", "{DE9482A3-1496-46FD-9FCC-6E3873C322C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{E68BC9D3-C93E-440E-9688-085D968E6C1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{E68BC9D3-C93E-440E-9688-085D968E6C1C}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{78EF10A8-36D5-4575-AC05-8F832B7B8907}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +35,15 @@ Global
 		{E68BC9D3-C93E-440E-9688-085D968E6C1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E68BC9D3-C93E-440E-9688-085D968E6C1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E68BC9D3-C93E-440E-9688-085D968E6C1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78EF10A8-36D5-4575-AC05-8F832B7B8907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78EF10A8-36D5-4575-AC05-8F832B7B8907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78EF10A8-36D5-4575-AC05-8F832B7B8907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78EF10A8-36D5-4575-AC05-8F832B7B8907}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B99DD20-0E7A-4CBE-B387-DF4553194CD9}
 	EndGlobalSection
 EndGlobal

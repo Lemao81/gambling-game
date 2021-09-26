@@ -35,7 +35,7 @@ namespace GamblingGame.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<GamblingGameDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Local")));
+            services.AddDbContext<GamblingGameDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllers()
                 .AddNewtonsoftJson(options =>

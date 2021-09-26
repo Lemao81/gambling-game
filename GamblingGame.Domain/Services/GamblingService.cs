@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using GamblingGame.Domain.Consts;
+﻿using System.Threading.Tasks;
 using GamblingGame.Domain.Exceptions;
 using GamblingGame.Domain.Interfaces;
 using GamblingGame.Domain.Models;
@@ -11,17 +9,19 @@ namespace GamblingGame.Domain.Services
     {
         private readonly IAuthenticateContext _authenticateContext;
         private readonly IAccountRepository _accountRepository;
+        private readonly ILotteryWheel _lotteryWheel;
 
-        public GamblingService(IAuthenticateContext authenticateContext, IAccountRepository accountRepository)
+        public GamblingService(IAuthenticateContext authenticateContext, IAccountRepository accountRepository, ILotteryWheel lotteryWheel)
         {
             _authenticateContext = authenticateContext;
             _accountRepository = accountRepository;
+            _lotteryWheel = lotteryWheel;
         }
 
         public async Task<GambleResult> GambleAsync(int betPoints, int tip)
         {
             var account = await ValidateAccount(betPoints);
-            var draw = GetDraw();
+            var draw = _lotteryWheel.GetRandomNumber();
             var result = GetGambleResult(betPoints, tip, draw, account);
             await UpdateAccount(account, result);
 
@@ -38,8 +38,6 @@ namespace GamblingGame.Domain.Services
 
             return account;
         }
-
-        private static int GetDraw() => new Random(DateTime.Now.Millisecond).Next(Const.GambleDrawUpperLimit + 1);
 
         private static GambleResult GetGambleResult(int betPoints, int tip, int draw, Account account) =>
             draw != tip ? GambleResult.Failure(betPoints, account.Points) : GambleResult.Success(betPoints, account.Points);

@@ -48,6 +48,7 @@ namespace GamblingGame.Api
             services.AddScoped<IGamblingService, GamblingService>();
             services.AddScoped<IPasswordValidator, PasswordValidator>();
             services.AddScoped<IAuthenticateContext, AuthenticateContext>();
+            services.AddScoped<ILotteryWheel, LotteryWheel>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters
